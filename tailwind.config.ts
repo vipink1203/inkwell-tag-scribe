@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,12 +62,25 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				note: {
+					purple: "#8B5CF6",
+					blue: "#4F46E5",
+					green: "#10B981",
+					red: "#EF4444",
+					yellow: "#F59E0B",
+					pink: "#EC4899",
+					gray: "#6B7280",
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
