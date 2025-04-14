@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
 
-## Project info
+# MarkKeeper - Markdown Note-Taking App
 
-**URL**: https://lovable.dev/projects/3522a70f-fe67-4ca3-9985-7dcffb5f1709
+MarkKeeper is a beautiful, modern markdown-based note-taking application designed for simplicity and productivity. Organize your thoughts, code snippets, and ideas with a clean and intuitive interface.
 
-## How can I edit this code?
+![MarkKeeper Screenshot](https://lovable.dev/opengraph-image-p98pqg.png)
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- **Rich Markdown Support**: Write in markdown with real-time preview and syntax highlighting
+- **Folder Organization**: Keep your notes organized in custom folders
+- **Tagging System**: Add tags to your notes for easy filtering and searching
+- **Full-Text Search**: Quickly find your notes with powerful search capabilities
+- **Customizable UI**: Change themes, font sizes, and other display settings
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Offline Support**: All your notes are stored locally for privacy and offline access
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3522a70f-fe67-4ca3-9985-7dcffb5f1709) and start prompting.
+## Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+### Method 1: Docker (Recommended)
 
-**Use your preferred IDE**
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/markkeeper.git
+   cd markkeeper
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Build and run with Docker:
+   ```
+   docker build -t markkeeper .
+   docker run -p 8080:8080 markkeeper
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3. Access MarkKeeper at `http://localhost:8080`
 
-Follow these steps:
+### Method 2: Local Development
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+#### Prerequisites
+- Node.js (v16 or later)
+- npm or yarn
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+#### Steps
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/markkeeper.git
+   cd markkeeper
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+2. Install dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Start the development server:
+   ```
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Access MarkKeeper at `http://localhost:8080`
+
+## Building for Production
+
+```
+npm run build
+# or
+yarn build
 ```
 
-**Edit a file directly in GitHub**
+The built application will be in the `dist` directory.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Technologies Used
 
-**Use GitHub Codespaces**
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [React Markdown](https://github.com/remarkjs/react-markdown)
+- [sql.js](https://github.com/sql-js/sql.js/)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Contributing
 
-## What technologies are used for this project?
+We welcome contributions to MarkKeeper! Please feel free to submit a Pull Request.
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## How can I deploy this project?
+## Acknowledgements
 
-Simply open [Lovable](https://lovable.dev/projects/3522a70f-fe67-4ca3-9985-7dcffb5f1709) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- Built with [Lovable](https://lovable.dev/)
+- Icons from [Lucide](https://lucide.dev/)
