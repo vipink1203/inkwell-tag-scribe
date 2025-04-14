@@ -270,6 +270,7 @@ export const CreateTagDialog = () => {
 export const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean, setIsCollapsed: (value: boolean) => void }) => {
   const { folders, tags, createNote, searchQuery, updateSearchQuery } = useNotes();
   const [activeSection, setActiveSection] = useState<"folders" | "tags" | "all">("all");
+  const [settingsOpen, setSettingsOpen] = useState(false);
   
   const rootFolders = folders.filter(folder => folder.parentId === null);
   
@@ -393,10 +394,18 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean,
           </div>
           
           <div className="mt-auto p-2 border-t border-sidebar-border">
-            <Button variant="ghost" size="sm" className="w-full justify-start">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="w-full justify-start"
+              onClick={() => setSettingsOpen(true)}
+            >
               <Settings size={16} className="mr-2" />
               Settings
             </Button>
+            
+            {/* Add the SettingsDialog component here */}
+            <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
           </div>
         </>
       )}

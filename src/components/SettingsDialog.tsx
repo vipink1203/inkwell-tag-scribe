@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -18,13 +17,24 @@ import { useSettings } from '@/context/SettingsContext';
 import { SettingsUpdate } from '@/types/settings';
 import { Settings } from 'lucide-react';
 
-export const SettingsDialog = () => {
+interface SettingsDialogProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps = {}) => {
   const { settings, isLoading, updateSettings, resetSettings } = useSettings();
-  const [open, setOpen] = React.useState(false);
+  const [internalOpen, setInternalOpen] = React.useState(false);
   const [formValues, setFormValues] = React.useState<SettingsUpdate>({});
 
+  const isControlled = open !== undefined && onOpenChange !== undefined;
+  const isOpen = isControlled ? open : internalOpen;
+  const setIsOpen = isControlled 
+    ? onOpenChange 
+    : setInternalOpen;
+
   React.useEffect(() => {
-    if (settings && open) {
+    if (settings && isOpen) {
       setFormValues({
         theme: settings.theme,
         fontFamily: settings.fontFamily,
@@ -35,7 +45,7 @@ export const SettingsDialog = () => {
         saveInterval: settings.saveInterval,
       });
     }
-  }, [settings, open]);
+  }, [settings, isOpen]);
 
   const handleChange = (field: string, value: any) => {
     setFormValues(prev => ({ ...prev, [field]: value }));
@@ -43,12 +53,12 @@ export const SettingsDialog = () => {
 
   const handleSave = async () => {
     await updateSettings(formValues);
-    setOpen(false);
+    setIsOpen(false);
   };
 
   const handleReset = async () => {
     await resetSettings();
-    setOpen(false);
+    setIsOpen(false);
   };
 
   if (isLoading || !settings) {
@@ -56,13 +66,15 @@ export const SettingsDialog = () => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <Settings className="h-5 w-5" />
-          <span className="sr-only">Settings</span>
-        </Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      {!isControlled && (
+        <DialogTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Settings className="h-5 w-5" />
+            <span className="sr-only">Settings</span>
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
