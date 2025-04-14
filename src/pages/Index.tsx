@@ -13,7 +13,7 @@ const Index = () => {
     <div className="flex h-screen w-full">
       <Sidebar isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
       <div className="flex-1 overflow-hidden relative">
-        {searchQuery.trim() && !currentNote ? (
+        {searchQuery.trim() ? (
           <SearchResults />
         ) : (
           <NoteEditor />

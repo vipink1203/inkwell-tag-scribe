@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Note, Folder, Tag } from "@/types";
 import { generateSampleData } from "@/lib/sample-data";
@@ -37,7 +36,6 @@ export const NoteProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    // Load data from localStorage or use sample data
     const savedNotes = localStorage.getItem("notes");
     const savedFolders = localStorage.getItem("folders");
     const savedTags = localStorage.getItem("tags");
@@ -55,7 +53,6 @@ export const NoteProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   useEffect(() => {
-    // Save data to localStorage whenever it changes
     if (notes.length > 0) {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
@@ -69,6 +66,12 @@ export const NoteProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const updateSearchQuery = (query: string) => {
     setSearchQuery(query);
+    if (!query.trim() && !currentNote) {
+      const firstNote = notes[0];
+      if (firstNote) {
+        setCurrentNote(firstNote);
+      }
+    }
   };
 
   const createNote = (folderId: string | null) => {
@@ -107,6 +110,7 @@ export const NoteProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (note) {
       setCurrentNote(note);
       setIsEditing(false);
+      setSearchQuery("");
     }
   };
 
@@ -127,11 +131,9 @@ export const NoteProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const deleteFolder = (folderId: string) => {
-    // Delete the folder
     const updatedFolders = folders.filter((folder) => folder.id !== folderId);
     setFolders(updatedFolders);
 
-    // Move notes from this folder to root
     const updatedNotes = notes.map((note) =>
       note.folderId === folderId ? { ...note, folderId: null } : note
     );
@@ -155,11 +157,9 @@ export const NoteProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const deleteTag = (tagId: string) => {
-    // Delete the tag
     const updatedTags = tags.filter((tag) => tag.id !== tagId);
     setTags(updatedTags);
 
-    // Remove tag from all notes
     const updatedNotes = notes.map((note) => ({
       ...note,
       tags: note.tags.filter((id) => id !== tagId),

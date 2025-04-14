@@ -2,6 +2,20 @@
 import { useNotes } from "@/context/NoteContext";
 import { FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
+const getTagColorClass = (colorValue: string) => {
+  switch (colorValue) {
+    case "note-purple": return "bg-note-purple";
+    case "note-blue": return "bg-note-blue";
+    case "note-green": return "bg-note-green";
+    case "note-red": return "bg-note-red";
+    case "note-yellow": return "bg-note-yellow";
+    case "note-pink": return "bg-note-pink";
+    case "note-gray": return "bg-note-gray";
+    default: return "bg-note-purple";
+  }
+};
 
 export const SearchResults = () => {
   const { notes, tags, searchQuery, selectNote } = useNotes();
@@ -52,7 +66,7 @@ export const SearchResults = () => {
                   return (
                     <Badge 
                       key={tag.id} 
-                      className={`bg-${tag.color} hover:bg-${tag.color}/80 text-xs`}
+                      className={cn("text-xs", getTagColorClass(tag.color))}
                     >
                       #{tag.name}
                     </Badge>
