@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNotes } from "@/context/NoteContext";
 import { Folder, Tag, Note } from "@/types";
@@ -20,6 +19,7 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { SettingsDialog } from "@/components/SettingsDialog";
 
 interface FolderItemProps {
   folder: Folder;
@@ -404,7 +404,6 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean,
               Settings
             </Button>
             
-            {/* Add the SettingsDialog component here */}
             <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
           </div>
         </>
