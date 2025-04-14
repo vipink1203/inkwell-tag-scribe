@@ -12,7 +12,7 @@ export const MarkdownPreview = ({ content }: MarkdownPreviewProps) => {
   return (
     <div className="prose prose-sm md:prose-base max-w-none markdown-content">
       <ReactMarkdown
-        rehypePlugins={[rehypeRaw, rehypeHighlight, remarkGfm]}
+        rehypePlugins={[rehypeRaw, rehypeHighlight]}
         remarkPlugins={[remarkGfm]}
       >
         {content}
