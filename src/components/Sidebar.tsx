@@ -15,7 +15,8 @@ import {
   File, 
   X,
   Menu,
-  Settings
+  Settings,
+  Book
 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
@@ -265,7 +266,10 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }: { isCollapsed: boolean,
           <Menu size={18} />
         </Button>
         {!isCollapsed && (
-          <h1 className="font-semibold text-lg">InkWell</h1>
+          <div className="flex items-center">
+            <Book size={20} className="mr-2" />
+            <h1 className="font-semibold text-lg">MarkKeeper</h1>
+          </div>
         )}
       </div>
       
